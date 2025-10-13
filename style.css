@@ -66,3 +66,20 @@ video {
 .upload-section {
   margin-top: 20px;
 }
+
+/* Toast styles */
+.toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 24px;
+  background: rgba(0,0,0,0.85);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+  transition: opacity 200ms ease, transform 200ms ease;
+  z-index: 9999;
+}
+.toast.hidden { opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(8px); }
+.toast:not(.hidden) { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }

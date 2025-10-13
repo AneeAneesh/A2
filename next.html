@@ -14,8 +14,21 @@
     </ul>
   </nav>
   <main style="padding:24px;">
-    <h1>Next Page</h1>
-    <p>This is the page opened when Home is clicked.</p>
+    <h1>wellcom my web pag</h1>
+    <p>2025to2028 batch</p>
   </main>
+  <!-- Toast container for messages passed via sessionStorage -->
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const msg = sessionStorage.getItem('message');
+      if (!msg) return;
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => { toast.classList.add('hidden'); sessionStorage.removeItem('message'); }, 3500);
+    });
+  </script>
 </body>
 </html>

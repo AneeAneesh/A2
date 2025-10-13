@@ -36,8 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
   function makeNavLink(id, targetUrl) {
     const el = document.getElementById(id);
     if (!el) return;
-    el.addEventListener('click', () => { window.location.href = targetUrl; });
-    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = targetUrl; } });
+    el.addEventListener('click', () => {
+      if (id === 'homeBtn') sessionStorage.setItem('message', 'wellcom my web pag');
+      window.location.href = targetUrl;
+    });
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (id === 'homeBtn') sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = targetUrl; } });
   }
   makeNavLink('homeBtn', 'next.html');
   makeNavLink('aboutBtn', 'index.html#about');
