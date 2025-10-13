@@ -23,7 +23,17 @@
 <video id="carvideo" src="car.mp4" width="390" controls preload="metadata"></video>
 <button id="playBtn">Play</button>
 
+<div class="reel-container">
+    <video controls autoplay loop muted src="reel1.mp4"></video>
+    <video controls autoplay loop muted src="reel2.mp4"></video>
+  </div>
 
+<div class="upload-section">
+    <input type="file" id="upload" accept="video/*">
+    <button onclick="uploadReel()">Add Reel</button>
+  </div>
+
+  <script src="script.js"></script>
 
 </body>
 </html>

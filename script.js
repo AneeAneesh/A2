@@ -21,34 +21,19 @@ function playvideo() {
   }
 }
 
-// optional: hook up the button instead of inline onclick
-document.getElementById('playBtn')?.addEventListener('click', playvideo);
+function uploadReel() {
+  const fileInput = document.getElementById('upload');
+  const file = fileInput.files[0];
+  if (!file) return alert("Please select a video");
 
-// optional: hook up the button instead of inline onclick
-document.getElementById('playBtn')?.addEventListener('click', playvideo);
-function togglePlay() {
-  const video = document.getElementById('carvideo');
-  if (!video) return;
-  if (video.paused) {
-    video.play().catch(e => console.warn(e));
-  } else {
-    video.pause();
-  }
-}
-document.getElementById('playBtn')?.addEventListener('click', togglePlay);
-function togglePlay() {
-  const video = document.getElementById('carvideo');
-  if (!video) return;
-  if (video.paused) {
-    video.play().catch(e => console.warn(e));
-  } else {
-    video.pause();
-  }
-}
-document.getElementById('playBtn')?.addEventListener('click', togglePlay);
-function playvideo() {
-  const video = document.getElementById('carvideo');
-  if (!video) return;
-  video.classList.remove('hidden'); // if you need to show it
-  video.play().catch(err => console.warn('play blocked', err));
-}
+  const video = document.createElement('video');
+  video.src = URL.createObjectURL(file);
+  video.controls = true;
+  video.autoplay = true;
+  video.loop = true;
+  video.muted = true;
+  video.style.width = "300px";
+  video.style.height = "500px";
+  video.style.borderRadius = "20px";
+
+  document.querySelector('.reel-container').prepend(video);
