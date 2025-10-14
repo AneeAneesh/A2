@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Next Page</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li class="brand"><img src="bca.jpg" alt="Bee Cee Yee"> Bee cee yee</li>
+      <li><a href="second.html">Back</a></li>
+    </ul>
+  </nav>
+  <main style="padding:24px;">
+    <h1>wellcom my web pag</h1>
+    <p>2025to2028 batch</p>
+  </main>
+  <!-- Toast container for messages passed via sessionStorage -->
+  <div id="toast" class="toast hidden" role="status" aria-live="polite"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const msg = sessionStorage.getItem('message');
+      if (!msg) return;
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => { toast.classList.add('hidden'); sessionStorage.removeItem('message'); }, 3500);
+    });
+  </script>
+  <div class="reel-container">
+    <video controls autoplay loop muted src="bleson.mp4"></video>
+    <video controls autoplay loop muted src="abc.mp4"></video>
+  </div>
+
+<div class="upload-section">
+    <input type="file" id="upload" accept="video/*">
+    <button onclick="uploadReel()">Add Reel</button>
+  </div>
+
+  <script src="script.js"></script>
+  
+</body>
+</html>

@@ -42,8 +42,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (id === 'homeBtn') sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = targetUrl; } });
   }
+  // Navigation: make nav items keyboard-accessible and clickable
+  function makeNavLink(id, targetUrl) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('click', () => {
+      if (id === 'videoBtn') sessionStorage.setItem('message', 'wellcom my web pag');
+      window.location.href = targetUrl;
+    });
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (id === 'videoBtn') sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = targetUrl; } });
+  }
   makeNavLink('homeBtn', 'next.html');
   makeNavLink('aboutBtn', 'index.html#about');
+  makeNavLink('videoBtn', 'second.html');
+  // Video button: scroll to video container and focus first video
+  const videoBtn = document.getElementById('VideoBtn');
+  if (videoBtn) {
+    const scrollToVideos = () => {
+      const container = document.querySelector('.reel-container');
+      if (!container) return;
+      container.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const firstVideo = container.querySelector('video');
+      if (firstVideo) {
+        firstVideo.tabIndex = 0;
+        firstVideo.focus({ preventScroll: true });
+      }
+    };
+    videoBtn.addEventListener('click', scrollToVideos);
+    videoBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); scrollToVideos(); } });
+  }
 
   // IG-style single video (#igVideo)
   const igVideo = document.getElementById('igVideo');
@@ -70,6 +97,25 @@ document.addEventListener('DOMContentLoaded', () => {
       } else { igVideo.muted = true; muteToggle && (muteToggle.textContent = '🔇'); }
     });
 
+    // Double-click opens next page (preserve single-click mute toggle)
+    igVideo.addEventListener('dblclick', () => {
+      sessionStorage.setItem('message', 'wellcom my web pag');
+      window.location.href = 'next.html';
+    });
+    // Double-click opens next page (preserve single-click mute toggle)
+    igVideo.addEventListener('dblclick', () => {
+      sessionStorage.setItem('message', 'wellcom my web pag');
+      window.location.href = 'second.html';
+    });
+
+    // make video focusable and open next page on Enter
+    igVideo.tabIndex = 0;
+    igVideo.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = 'next.html'; } });
+
+// make video focusable and open next page on Enter
+    igVideo.tabIndex = 0;
+    igVideo.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = 'second.html'; } });
+
     muteToggle && muteToggle.addEventListener('click', e => {
       e.stopPropagation();
       if (igVideo.muted) { igVideo.muted = false; igVideo.play().catch(() => {}); muteToggle.textContent = '🔊'; }
@@ -85,6 +131,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (reelsEl) {
     const reels = Array.from(reelsEl.querySelectorAll('.reel'));
     const videos = reels.map(r => r.querySelector('.reel-video'));
+
+    // make each reel video open next.html on double-click or Enter key
+    videos.forEach(v => {
+      if (!v) return;
+      v.tabIndex = 0; // make focusable
+      v.addEventListener('dblclick', () => {
+        sessionStorage.setItem('message', 'wellcom my web pag');
+        window.location.href = 'next.html';
+      });
+      v.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = 'next.html'; } });
+    });
+    // make each reel video open second.html on double-click or Enter key
+    videos.forEach(v => {
+      if (!v) return;
+      v.tabIndex = 0; // make focusable
+      v.addEventListener('dblclick', () => {
+        sessionStorage.setItem('message', 'wellcom my web pag');
+        window.location.href = 'second.html';
+      });
+      v.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = 'second.html'; } });
+    });
+
 
     const reelObserver = new IntersectionObserver(entries => {
       entries.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
