@@ -37,24 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('click', () => {
-      if (id === 'homeBtn') sessionStorage.setItem('message', 'wellcom my web pag');
+      if (id === 'homeBtn') sessionStorage.setItem('message', 'Welcome my web page');
       window.location.href = targetUrl;
     });
-    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (id === 'homeBtn') sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = targetUrl; } });
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (id === 'homeBtn') sessionStorage.setItem('message', 'Welcom my web page'); window.location.href = targetUrl; } });
   }
   // Navigation: make nav items keyboard-accessible and clickable
   function makeNavLink(id, targetUrl) {
     const el = document.getElementById(id);
     if (!el) return;
     el.addEventListener('click', () => {
-      if (id === 'videoBtn') sessionStorage.setItem('message', 'wellcom my web pag');
+      if (id === 'videoBtn') sessionStorage.setItem('message', 'Welcome my web page');
       window.location.href = targetUrl;
     });
-    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (id === 'videoBtn') sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = targetUrl; } });
+    el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (id === 'videoBtn') sessionStorage.setItem('message', 'Welcome my web page'); window.location.href = targetUrl; } });
   }
   makeNavLink('homeBtn', 'next.html');
-  makeNavLink('aboutBtn', 'index.html#about');
-  makeNavLink('videoBtn', 'second.html');
+  makeNavLink('aboutBtn', 'about.html');
+  makeNavLink('videoBtn', 'video.html');
   // Video button: scroll to video container and focus first video
   const videoBtn = document.getElementById('VideoBtn');
   if (videoBtn) {
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Double-click opens next page (preserve single-click mute toggle)
     igVideo.addEventListener('dblclick', () => {
       sessionStorage.setItem('message', 'wellcom my web pag');
-      window.location.href = 'second.html';
+      window.location.href = 'video.html';
     });
 
     // make video focusable and open next page on Enter
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // make video focusable and open next page on Enter
     igVideo.tabIndex = 0;
-    igVideo.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = 'second.html'; } });
+    igVideo.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = 'video.html'; } });
 
     muteToggle && muteToggle.addEventListener('click', e => {
       e.stopPropagation();
@@ -140,17 +140,17 @@ document.addEventListener('DOMContentLoaded', () => {
         sessionStorage.setItem('message', 'wellcom my web pag');
         window.location.href = 'next.html';
       });
-      v.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = 'next.html'; } });
+      v.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'Welcome my web page'); window.location.href = 'next.html'; } });
     });
-    // make each reel video open second.html on double-click or Enter key
+    // make each reel video open video.html on double-click or Enter key
     videos.forEach(v => {
       if (!v) return;
       v.tabIndex = 0; // make focusable
       v.addEventListener('dblclick', () => {
-        sessionStorage.setItem('message', 'wellcom my web pag');
-        window.location.href = 'second.html';
+        sessionStorage.setItem('message', 'Welcome my web page');
+        window.location.href = 'video.html';
       });
-      v.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'wellcom my web pag'); window.location.href = 'second.html'; } });
+      v.addEventListener('keydown', e => { if (e.key === 'Enter') { sessionStorage.setItem('message', 'Welcome my web page'); window.location.href = 'video.html'; } });
     });
 
 
